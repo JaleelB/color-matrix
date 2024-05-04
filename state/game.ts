@@ -19,16 +19,27 @@ interface GameState {
 
 export const useGameState = create<GameState>((set) => ({
   currentScore: 0,
-  highScore: parseInt(localStorage.getItem("highScore") || "0", 10),
+  highScore: 0,
   gameLevel: "easy",
   timer: 7,
   gameStatus: "not started",
   setScore: (score) => set({ currentScore: score }),
   setHighScore: (score) => {
-    localStorage.setItem("highScore", score.toString());
+    if (typeof window !== "undefined") {
+      localStorage.setItem("highScore", score.toString());
+    }
     set({ highScore: score });
   },
   setGameLevel: (level) => set({ gameLevel: level }),
-  setTimer: (time: 7 | 5 | 3) => set({ timer: time }),
+  setTimer: (time) => set({ timer: time }),
   setGameStatus: (status) => set({ gameStatus: status }),
+  initializeHighScore: () => {
+    if (typeof window !== "undefined") {
+      const storedHighScore = parseInt(
+        localStorage.getItem("highScore") || "0",
+        10
+      );
+      set({ highScore: storedHighScore });
+    }
+  },
 }));
