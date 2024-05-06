@@ -18,36 +18,62 @@ export const Timer = () => {
     startTime: state.startTime,
   }));
 
-  const [localTimer, setLocalTimer] = useState(timerFromStore);
+  const [localTimer, setLocalTimer] = useState(timerFromStore * 1000); // Store time in milliseconds
+  const [displayTime, setDisplayTime] = useState(() =>
+    formatTime(timerFromStore * 1000)
+  ); // Initialize display time
 
   useEffect(() => {
+    let frameId: number;
+    const start = performance.now();
+
+    const runTimer = () => {
+      const elapsed = performance.now() - start;
+      const newTimer = Math.max(0, timerFromStore * 1000 - elapsed);
+      setLocalTimer(newTimer);
+      setDisplayTime(formatTime(newTimer));
+
+      if (newTimer <= 0) {
+        updateGameStatus("ended");
+      } else {
+        frameId = requestAnimationFrame(runTimer);
+      }
+    };
+
     if (gameStatus === "running") {
-      const intervalId = setInterval(() => {
-        setLocalTimer((currentTimer) => {
-          const newTimer = currentTimer - 1;
-          return newTimer;
-        });
-      }, 1000);
-      return () => clearInterval(intervalId);
+      frameId = requestAnimationFrame(runTimer);
     }
-  }, [gameStatus]);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
+  }, [gameStatus, timerFromStore, updateGameStatus]);
+
+  // Function to format the timer into seconds:milliseconds
+  function formatTime(totalMilliseconds: number) {
+    const seconds = Math.floor(totalMilliseconds / 1000);
+    const milliseconds = Math.floor((totalMilliseconds % 1000) / 10); // Simulated two digits
+    const microseconds = Math.floor((totalMilliseconds % 10) * 10); // Simulated two digits
+    return `${seconds.toString().padStart(2, "0")}:${milliseconds
+      .toString()
+      .padStart(2, "0")}:${microseconds.toString().padStart(2, "0")}`;
+  }
 
   useEffect(() => {
-    if (localTimer === 0) {
-      updateGameStatus("ended");
+    if (gameStatus === "ended") {
+      updateTimer(Math.ceil(localTimer / 1000));
     }
-  }, [localTimer, updateGameStatus]);
-
-  useEffect(() => {
-    updateTimer(localTimer); // Sync the local timer back to the store
-  }, [localTimer, updateTimer]);
+  }, [localTimer, updateTimer, gameStatus]);
 
   useEffect(() => {
     // Reset the local timer when the game level changes or game restarts
     if (gameStatus === "not started" || gameStatus === "running") {
-      setLocalTimer(startTime[gameLevel]);
+      setLocalTimer(startTime[gameLevel] * 1000);
+      setDisplayTime(formatTime(startTime[gameLevel] * 1000));
     }
   }, [gameLevel, gameStatus, startTime]);
 
-  return <span>{localTimer}</span>;
+  return (
+    <span className="min-w-[100px] text-xl text-[#FBEC2B]">{displayTime}</span>
+  );
 };
