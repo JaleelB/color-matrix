@@ -73,7 +73,5 @@ export const Timer = () => {
     }
   }, [gameLevel, gameStatus, startTime]);
 
-  return (
-    <span className="min-w-[100px] text-xl text-[#FBEC2B]">{displayTime}</span>
-  );
+  return <span className="min-w-[150px] text-2xl">{displayTime}</span>;
 };
