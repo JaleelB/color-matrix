@@ -19,6 +19,7 @@ type GameActions = {
   setGameLevel: (level: GameLevel) => void;
   setTimer: (time: number) => void;
   setGameStatus: (status: GameStatus) => void;
+  endGame: () => void;
 };
 
 export const useGameState = create<GameState & GameActions>((set) => ({
@@ -38,4 +39,11 @@ export const useGameState = create<GameState & GameActions>((set) => ({
   setGameLevel: (level) => set({ gameLevel: level }),
   setTimer: (time) => set({ timer: time }),
   setGameStatus: (status) => set({ gameStatus: status }),
+  endGame: () =>
+    set({
+      gameStatus: "not started",
+      currentScore: 0,
+      timer: 7,
+      gameLevel: "easy",
+    }),
 }));
