@@ -1,3 +1,4 @@
+import { randomColorPair } from "@/lib/color";
 import { create } from "zustand";
 
 export type Time = 7 | 5 | 3; // time to countdown for each tile click decreases with increasing game level. 7s for easy, 5s for medium, 3s for hard
@@ -12,6 +13,7 @@ interface GameState {
   gameStatus: GameStatus;
   startTime: Record<GameLevel, Time>;
   gameColor: string;
+  gameColorText: string;
   selectedColor: string;
 }
 
@@ -22,7 +24,8 @@ type GameActions = {
   setTimer: (time: number) => void;
   setGameStatus: (status: GameStatus) => void;
   endGame: () => void;
-  setGameColor: (color: string) => void;
+  // setGameColor: (color: string) => void;
+  setGameColor: (color: string, text: string) => void;
   setSelectedColor: (color: string) => void;
 };
 
@@ -30,6 +33,9 @@ export const useGameState = create<GameState & GameActions>((set) => ({
   currentScore: 0,
   highScore: 0,
   gameLevel: "easy",
+  gameColor: "",
+  gameColorText: "",
+  selectedColor: "",
   timer: 7,
   startTime: {
     easy: 7,
@@ -50,8 +56,12 @@ export const useGameState = create<GameState & GameActions>((set) => ({
       timer: 7,
       gameLevel: "easy",
     }),
-  gameColor: "",
-  selectedColor: "",
-  setGameColor: (color) => set({ gameColor: color }),
+  // setGameColor: (color) => set({ gameColor: color }),
+  setGameColor: (color, text) => set({ gameColor: color, gameColorText: text }),
   setSelectedColor: (color) => set({ selectedColor: color }),
 }));
+
+export const updateGameColorAndText = () => {
+  const [color, text] = randomColorPair();
+  useGameState.getState().setGameColor(color, text);
+};

@@ -40,23 +40,23 @@ export type Color = (typeof colors)[number];
 
 export type ColorText = (typeof colorText)[number];
 
-export const colorMap: Record<Color, ColorText> = {
-  "#EF4444": "red",
-  "#3B82F6": "blue",
-  "#22C55E": "green",
-  "#EAB308": "yellow",
-  "#A855F7": "purple",
-  "#F97316": "orange",
-  "#F43F5E": "pink",
-  "#71717A": "gray",
-  "#14B8A6": "teal",
-  "#FFFFFF": "white",
-  "#FFC0CB": "lightpink",
-  "#800000": "maroon",
-  "#808000": "olivegreen",
-  "#40E0D0": "turquoise",
-  "#607d8b": "bluegray",
-  "#cddc39": "lime",
+export const colorMap: Record<ColorText, Color> = {
+  red: "#EF4444",
+  blue: "#3B82F6",
+  green: "#22C55E",
+  yellow: "#EAB308",
+  purple: "#A855F7",
+  orange: "#F97316",
+  pink: "#F43F5E",
+  gray: "#71717A",
+  teal: "#14B8A6",
+  white: "#FFFFFF",
+  lightpink: "#FFC0CB",
+  maroon: "#800000",
+  olivegreen: "#808000",
+  turquoise: "#40E0D0",
+  bluegray: "#607d8b",
+  lime: "#cddc39",
 };
 
 const randomColor = (): Color => {
