@@ -1,7 +1,6 @@
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -60,6 +59,19 @@ export const HowToPlay: React.FC = () => {
                 answer scores a point, but be careful—selecting the wrong color
                 ends the game!
               </p>
+            </div>
+            <div className="w-full mt-4">
+              <h3 className="font-bold mb-2 text-white">Tips for Success </h3>
+              <ol className="w-full space-y-2 list-outside">
+                <li>
+                  Stay Focused: The colors and text can be misleading. Focus on
+                  the color of the text, not the word itself.
+                </li>
+                <li>
+                  Practice: Speed and accuracy improve with practice. Keep
+                  playing to beat your best score! time.
+                </li>
+              </ol>
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
