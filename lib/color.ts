@@ -59,12 +59,18 @@ export const colorMap: Record<Color, ColorText> = {
   "#cddc39": "lime",
 };
 
-export const randomColor = (): Color => {
+const randomColor = (): Color => {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 };
 
-export const randomColorText = (): ColorText => {
+const randomColorText = (): ColorText => {
   const randomIndex = Math.floor(Math.random() * colorText.length);
   return colorText[randomIndex];
+};
+
+export const randomColorPair = (): [Color, ColorText] => {
+  const color = randomColor();
+  const text = randomColorText();
+  return [color, text];
 };

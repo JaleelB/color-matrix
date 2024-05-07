@@ -8,7 +8,7 @@ export default function GameView() {
   const currentGameView = {
     "not started": <Welcome />,
     running: <Game />,
-    paused: <Pause />,
+    paused: <Game />,
     ended: <End />,
   }[gameStatus];
 
