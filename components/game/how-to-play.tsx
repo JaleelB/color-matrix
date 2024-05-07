@@ -65,7 +65,7 @@ export const HowToPlay: React.FC = () => {
               <ol className="w-full space-y-2 list-outside">
                 <li>
                   Stay Focused: The colors and text can be misleading. Focus on
-                  the color of the text, not the word itself.
+                  the name of the color, not the color of the word itself.
                 </li>
                 <li>
                   Practice: Speed and accuracy improve with practice. Keep
