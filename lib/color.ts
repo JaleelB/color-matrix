@@ -37,6 +37,7 @@ const colorText = [
 ];
 
 export type Color = (typeof colors)[number];
+export type Colors = typeof colors;
 
 export type ColorText = (typeof colorText)[number];
 
@@ -59,18 +60,18 @@ export const colorMap: Record<ColorText, Color> = {
   lime: "#cddc39",
 };
 
-const randomColor = (): Color => {
-  const randomIndex = Math.floor(Math.random() * colors.length);
+const randomColor = (maxColors: number): Color => {
+  const randomIndex = Math.floor(Math.random() * maxColors);
   return colors[randomIndex];
 };
 
-const randomColorText = (): ColorText => {
-  const randomIndex = Math.floor(Math.random() * colorText.length);
+const randomColorText = (maxColors: number): ColorText => {
+  const randomIndex = Math.floor(Math.random() * maxColors);
   return colorText[randomIndex];
 };
 
-export const randomColorPair = (): [Color, ColorText] => {
-  const color = randomColor();
-  const text = randomColorText();
+export const randomColorPair = (maxColors: number): [Color, ColorText] => {
+  const color = randomColor(maxColors);
+  const text = randomColorText(maxColors);
   return [color, text];
 };

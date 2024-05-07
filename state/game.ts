@@ -12,6 +12,7 @@ interface GameState {
   timer: number;
   gameStatus: GameStatus;
   startTime: Record<GameLevel, Time>;
+  cardCount: Record<GameLevel, number>;
   gameColor: string;
   gameColorText: string;
 }
@@ -38,6 +39,11 @@ export const useGameState = create<GameState & GameActions>((set) => ({
     medium: 5,
     hard: 3,
   },
+  cardCount: {
+    easy: 4,
+    medium: 8,
+    hard: 12,
+  },
   gameStatus: "not started",
   increaseScore: () => {
     set((state) => ({
@@ -60,6 +66,8 @@ export const useGameState = create<GameState & GameActions>((set) => ({
 }));
 
 export const updateGameColorAndText = () => {
-  const [color, text] = randomColorPair();
-  useGameState.getState().setGameColor(color, text);
+  const state = useGameState.getState();
+  const maxColors = state.cardCount[state.gameLevel];
+  const [color, text] = randomColorPair(maxColors);
+  state.setGameColor(color, text);
 };
