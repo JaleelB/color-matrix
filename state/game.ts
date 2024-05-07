@@ -25,45 +25,109 @@ type GameActions = {
   setGameStatus: (status: GameStatus) => void;
   endGame: () => void;
   setGameColor: (color: string, text: string) => void;
+  initializeGame: () => void;
 };
 
-export const useGameState = create<GameState & GameActions>((set) => ({
-  currentScore: 0,
-  highScore: 0,
-  gameLevel: "easy",
-  gameColor: "",
-  gameColorText: "",
-  timer: 7,
-  startTime: {
-    easy: 7,
-    medium: 5,
-    hard: 3,
-  },
-  cardCount: {
-    easy: 4,
-    medium: 8,
-    hard: 12,
-  },
-  gameStatus: "not started",
-  increaseScore: () => {
-    set((state) => ({
-      currentScore: state.currentScore + 1,
-      timer: state.startTime[state.gameLevel], // Reset the timer to the start time of the current level
-    }));
-  },
-  setHighScore: (score) => set({ highScore: score }),
-  setGameLevel: (level) => set({ gameLevel: level }),
-  setTimer: (time) => set({ timer: time }),
-  setGameStatus: (status) => set({ gameStatus: status }),
-  endGame: () =>
-    set({
-      gameStatus: "not started",
-      currentScore: 0,
-      timer: 7,
-      gameLevel: "easy",
-    }),
-  setGameColor: (color, text) => set({ gameColor: color, gameColorText: text }),
-}));
+export const useGameState = create<GameState & GameActions>((set) => {
+  // Check if code is running on client or server
+  const isClient = typeof window !== "undefined";
+
+  const getFromLocalStorage = (key: string) => {
+    if (isClient) {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : 0;
+    }
+    return 0;
+  };
+
+  return {
+    currentScore: 0,
+    highScore: getFromLocalStorage("high-score"),
+    gameLevel: "easy",
+    gameColor: "",
+    gameColorText: "",
+    timer: 7,
+    startTime: {
+      easy: 7,
+      medium: 5,
+      hard: 3,
+    },
+    cardCount: {
+      easy: 4,
+      medium: 8,
+      hard: 12,
+    },
+    gameStatus: "not started",
+    increaseScore: () => {
+      set((state) => {
+        const newScore = state.currentScore + 1;
+        const newHighScore =
+          newScore > state.highScore ? newScore : state.highScore;
+
+        // Update high score in local storage if necessary
+        if (newScore > state.highScore && isClient) {
+          localStorage.setItem("high-score", JSON.stringify(newScore));
+        }
+
+        return {
+          ...state,
+          currentScore: newScore,
+          highScore: newHighScore,
+          timer: state.startTime[state.gameLevel], // Reset the timer
+        };
+      });
+    },
+    setHighScore: (score) => {
+      set({ highScore: score });
+      if (isClient) {
+        localStorage.setItem("high-score", JSON.stringify(score));
+      }
+    },
+    setGameLevel: (level) => set({ gameLevel: level }),
+    setTimer: (time) => set({ timer: time }),
+    setGameStatus: (status) => set({ gameStatus: status }),
+    initializeGame: () => {
+      set((state) => ({
+        ...state,
+        gameStatus: "running",
+        gameLevel: state.gameLevel,
+        currentScore: 0,
+        timer: state.startTime[state.gameLevel],
+      }));
+    },
+    endGame: () => {
+      set((state) => {
+        // Only update high score if the current score is greater
+        if (state.currentScore > state.highScore) {
+          if (isClient) {
+            localStorage.setItem(
+              "high-score",
+              JSON.stringify(state.currentScore)
+            );
+          }
+          return {
+            ...state,
+            gameStatus: "not started",
+            highScore: state.currentScore,
+            currentScore: 0,
+            timer: 7,
+            gameLevel: "easy",
+          };
+        }
+
+        return {
+          ...state,
+          gameStatus: "not started",
+          currentScore: 0,
+          timer: 7,
+          gameLevel: "easy",
+        };
+      });
+    },
+    setGameColor: (color, text) =>
+      set({ gameColor: color, gameColorText: text }),
+  };
+});
 
 export const updateGameColorAndText = () => {
   const state = useGameState.getState();
