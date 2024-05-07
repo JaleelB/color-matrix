@@ -1,11 +1,10 @@
 import { useGameState } from "@/state/game";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { colors } from "@/lib/color";
 
 export const Logo = () => {
   const endGame = useGameState((state) => state.endGame);
-
-  const colors = ["#EF4444", "#3B82F6", "#22C55E", "#EAB308", "#A855F7"];
 
   return (
     <Button
