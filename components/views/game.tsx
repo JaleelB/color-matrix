@@ -4,9 +4,8 @@ import { Timer } from "../game/timer";
 import { Logo } from "../game/logo";
 import Link from "next/link";
 import { Pause } from ".";
-import { colors, randomColorPair } from "@/lib/color";
-import GameTile from "../game/game-tile";
 import { HowToPlay } from "../game/how-to-play";
+import { GameGrid } from "../game/game-grid";
 
 const GameHeader: React.FC = () => {
   const score = useGameState((state) => state.currentScore);
@@ -29,7 +28,7 @@ const GameFooter: React.FC = () => {
   return (
     <footer className="fixed bottom-0 left-0 w-full h-20 text-white flex justify-between items-center px-4 lg:px-8">
       <Timer />
-      <div className="text-xl">00:00:00</div>
+      {/* <div className="text-xl">00:00:00</div> */}
       <Link
         href="https://github.com/JaleelB/color-matrix"
         target="_blank"
@@ -53,25 +52,10 @@ const GameFooter: React.FC = () => {
 };
 
 export const Game: React.FC = () => {
-  const [color, text] = randomColorPair();
-
   return (
     <section className="w-full h-full bg-black text-white grid place-items-center">
       <GameHeader />
-
-      <div
-        className="text-4xl md:text-6xl font-bold uppercase"
-        style={{
-          color,
-        }}
-      >
-        {text}
-      </div>
-      <div className="grid grid-cols-4 gap-4">
-        {colors.map((color, i) => (
-          <GameTile key={i} color={color} />
-        ))}
-      </div>
+      <GameGrid />
       <GameFooter />
     </section>
   );

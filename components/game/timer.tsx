@@ -32,6 +32,7 @@ export const Timer = () => {
       const newTimer = Math.max(0, timerFromStore * 1000 - elapsed);
       setLocalTimer(newTimer);
       setDisplayTime(formatTime(newTimer));
+      updateTimer(Math.ceil(newTimer / 1000)); //
 
       if (newTimer <= 0) {
         updateGameStatus("ended");
@@ -47,7 +48,7 @@ export const Timer = () => {
     return () => {
       cancelAnimationFrame(frameId);
     };
-  }, [gameStatus, timerFromStore, updateGameStatus]);
+  }, [gameStatus, timerFromStore, updateGameStatus, updateTimer]);
 
   // Function to format the timer into seconds:milliseconds
   function formatTime(totalMilliseconds: number) {
@@ -58,12 +59,6 @@ export const Timer = () => {
       .toString()
       .padStart(2, "0")}:${microseconds.toString().padStart(2, "0")}`;
   }
-
-  useEffect(() => {
-    if (gameStatus === "ended") {
-      updateTimer(Math.ceil(localTimer / 1000));
-    }
-  }, [localTimer, updateTimer, gameStatus]);
 
   useEffect(() => {
     // Reset the local timer when the game level changes or game restarts

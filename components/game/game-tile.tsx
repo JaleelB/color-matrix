@@ -7,7 +7,6 @@ export default function GameTile({ color }: { color: Color }) {
   const gameColorText = useGameState((state) => state.gameColorText);
   const correctColor = colorMap[gameColorText];
 
-  const updatedSelectedColor = useGameState((state) => state.setSelectedColor);
   const increaseScore = useGameState((state) => state.increaseScore);
   const updateGameStatus = useGameState((state) => state.setGameStatus);
 
@@ -22,7 +21,6 @@ export default function GameTile({ color }: { color: Color }) {
       }}
       variant="outline"
       onClick={() => {
-        updatedSelectedColor(color);
         if (color === correctColor) {
           increaseScore();
           updateGameColorAndText();

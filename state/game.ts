@@ -14,7 +14,6 @@ interface GameState {
   startTime: Record<GameLevel, Time>;
   gameColor: string;
   gameColorText: string;
-  selectedColor: string;
 }
 
 type GameActions = {
@@ -24,9 +23,7 @@ type GameActions = {
   setTimer: (time: number) => void;
   setGameStatus: (status: GameStatus) => void;
   endGame: () => void;
-  // setGameColor: (color: string) => void;
   setGameColor: (color: string, text: string) => void;
-  setSelectedColor: (color: string) => void;
 };
 
 export const useGameState = create<GameState & GameActions>((set) => ({
@@ -35,7 +32,6 @@ export const useGameState = create<GameState & GameActions>((set) => ({
   gameLevel: "easy",
   gameColor: "",
   gameColorText: "",
-  selectedColor: "",
   timer: 7,
   startTime: {
     easy: 7,
@@ -43,8 +39,12 @@ export const useGameState = create<GameState & GameActions>((set) => ({
     hard: 3,
   },
   gameStatus: "not started",
-  increaseScore: () =>
-    set((state) => ({ currentScore: state.currentScore + 1 })),
+  increaseScore: () => {
+    set((state) => ({
+      currentScore: state.currentScore + 1,
+      timer: state.startTime[state.gameLevel], // Reset the timer to the start time of the current level
+    }));
+  },
   setHighScore: (score) => set({ highScore: score }),
   setGameLevel: (level) => set({ gameLevel: level }),
   setTimer: (time) => set({ timer: time }),
@@ -56,9 +56,7 @@ export const useGameState = create<GameState & GameActions>((set) => ({
       timer: 7,
       gameLevel: "easy",
     }),
-  // setGameColor: (color) => set({ gameColor: color }),
   setGameColor: (color, text) => set({ gameColor: color, gameColorText: text }),
-  setSelectedColor: (color) => set({ selectedColor: color }),
 }));
 
 export const updateGameColorAndText = () => {
