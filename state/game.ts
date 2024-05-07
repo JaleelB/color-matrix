@@ -11,6 +11,8 @@ interface GameState {
   timer: number;
   gameStatus: GameStatus;
   startTime: Record<GameLevel, Time>;
+  gameColor: string;
+  selectedColor: string;
 }
 
 type GameActions = {
@@ -20,6 +22,8 @@ type GameActions = {
   setTimer: (time: number) => void;
   setGameStatus: (status: GameStatus) => void;
   endGame: () => void;
+  setGameColor: (color: string) => void;
+  setSelectedColor: (color: string) => void;
 };
 
 export const useGameState = create<GameState & GameActions>((set) => ({
@@ -46,4 +50,8 @@ export const useGameState = create<GameState & GameActions>((set) => ({
       timer: 7,
       gameLevel: "easy",
     }),
+  gameColor: "",
+  selectedColor: "",
+  setGameColor: (color) => set({ gameColor: color }),
+  setSelectedColor: (color) => set({ selectedColor: color }),
 }));
