@@ -12,22 +12,24 @@ export const End: React.FC = () => {
     finalScore,
     highScore,
     setGameStatus: updateGameStatus,
+    restartGame,
   } = useGameState((state) => ({
     finalScore: state.currentScore,
     highScore: state.highScore,
     setGameStatus: state.setGameStatus,
+    restartGame: state.restartGame,
   }));
 
   return (
-    <div className="w-full h-full grid place-items-center">
-      <div className="fixed top-4 left-0 right-0 w-screen h-14 px-4">
+    <div className="w-full h-full flex flex-col">
+      <div className="flex justify-between w-screen items-center h-20 px-4 py-8">
         <Logo />
+        <div className="text-[3.7vh] lg:text-[2.5vh] uppercase text-center">
+          <p className="text-sm">high score</p>
+          <p className="text-3xl font-bold">{highScore}</p>
+        </div>
       </div>
-      <div className="text-[3.7vh] lg:text-[2.5vh] fixed top-4 right-4 uppercase text-center">
-        <p className="text-sm">high score</p>
-        <p className="text-3xl font-bold">{highScore}</p>
-      </div>
-      <div className="space-y-4 flex flex-col items-center justify-center">
+      <div className="space-y-4 flex flex-1 flex-col items-center justify-center">
         <h1 className="glitch uppercase">
           <span aria-hidden="true">Game over</span>
           Game over
@@ -35,33 +37,33 @@ export const End: React.FC = () => {
         </h1>
         <div className="uppercase font-bold my-[5vh] text-center">
           <p className="text-[3.7vw] lg:text-[1.5vw]">Score</p>
-          <p className="text-[80px] md:text-[5.5vw] lg:text-[6vw] lg:mt-4">
+          <p className="text-[80px] md:text-[5.5vw] lg:text-[6vw]">
             {finalScore}
           </p>
         </div>
-        <div className="flex flex-col md:flex-row w-full justify-center gap-4 p-[3vh]">
+        <div className="flex flex-col md:flex-row w-full justify-center gap-[2vw] p-[3vh]">
           <Button
             size="lg"
             variant="outline"
             onClick={() => updateGameStatus("not started")}
             className={cn(
-              "text-[2vh] border-white border-2 uppercase w-full md:w-1/2 p-[3vh] hover:bg-[#ff65be] hover:text-black hover:border-[#ff65be]"
+              "text-[2vh] border-white border-2 uppercase w-full md:w-[51vh] p-[4vh] hover:bg-[#ff65be] hover:text-black hover:border-[#ff65be]"
             )}
           >
             No, lets go to main menu
           </Button>
           <Button
             size="lg"
-            onClick={() => updateGameStatus("running")}
+            onClick={() => restartGame()}
             className={cn(
-              "bg-[#fbed2b] text-[2vh] uppercase w-full md:w-1/2 p-[3vh] hover:bg-[#ff65be] hover:border-[#ff65be] border-2"
+              "bg-[#fbed2b] border-[#fbed2b] text-[2vh] uppercase w-full md:w-[51vh] p-[4vh] hover:bg-[#ff65be] hover:border-[#ff65be] border-2"
             )}
           >
             Let&apos;s play again
           </Button>
         </div>
       </div>
-      <div className="fixed bottom-4 left-0 right-4 w-screen h-14 px-4 hidden sm:flex justify-end gap-3">
+      <div className="w-screen h-20 px-4 py-8 hidden sm:flex justify-end items-center gap-3">
         <Link
           href={siteConfig.links.twitter}
           target="_blank"
@@ -75,6 +77,7 @@ export const End: React.FC = () => {
             height="16"
             viewBox="0 0 1200 1227"
             width="16"
+            strokeWidth="3"
             xmlns="http://www.w3.org/2000/svg"
             className="fill-current text-white group-hover:text-black cursor-pointer transition-all duration-300 ease-in-out"
           >
@@ -94,6 +97,7 @@ export const End: React.FC = () => {
             viewBox="0 0 438.549 438.549"
             height="19"
             width="19"
+            strokeWidth="3"
             className="fill-current text-white group-hover:text-black cursor-pointer transition-all duration-300 ease-in-out"
           >
             <path

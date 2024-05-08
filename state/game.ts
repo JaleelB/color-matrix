@@ -26,6 +26,7 @@ type GameActions = {
   endGame: () => void;
   setGameColor: (color: string, text: string) => void;
   initializeGame: () => void;
+  restartGame: () => void;
 };
 
 export const useGameState = create<GameState & GameActions>((set) => {
@@ -111,7 +112,6 @@ export const useGameState = create<GameState & GameActions>((set) => {
             gameStatus: "ended",
             highScore: state.currentScore,
             currentScore: 0,
-            timer: state.startTime[state.gameLevel],
           };
         }
 
@@ -119,6 +119,15 @@ export const useGameState = create<GameState & GameActions>((set) => {
           ...state,
           gameStatus: "ended",
           currentScore: 0,
+        };
+      });
+    },
+    restartGame: () => {
+      set((state) => {
+        return {
+          ...state,
+          currentScore: 0,
+          gameStatus: "running",
           timer: state.startTime[state.gameLevel],
         };
       });
