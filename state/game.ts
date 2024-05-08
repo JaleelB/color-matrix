@@ -90,9 +90,10 @@ export const useGameState = create<GameState & GameActions>((set) => {
       set((state) => ({
         ...state,
         gameStatus: "running",
-        gameLevel: state.gameLevel,
+        // gameLevel: state.gameLevel,
+        gameLevel: "easy",
         currentScore: 0,
-        timer: state.startTime[state.gameLevel],
+        timer: state.startTime["easy"],
       }));
     },
     endGame: () => {
@@ -107,20 +108,18 @@ export const useGameState = create<GameState & GameActions>((set) => {
           }
           return {
             ...state,
-            gameStatus: "not started",
+            gameStatus: "ended",
             highScore: state.currentScore,
             currentScore: 0,
-            timer: 7,
-            gameLevel: "easy",
+            timer: state.startTime[state.gameLevel],
           };
         }
 
         return {
           ...state,
-          gameStatus: "not started",
+          gameStatus: "ended",
           currentScore: 0,
-          timer: 7,
-          gameLevel: "easy",
+          timer: state.startTime[state.gameLevel],
         };
       });
     },

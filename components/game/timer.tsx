@@ -18,7 +18,7 @@ export const Timer = () => {
     startTime: state.startTime,
   }));
 
-  const [localTimer, setLocalTimer] = useState(timerFromStore * 1000); // Store time in milliseconds
+  // const [localTimer, setLocalTimer] = useState(timerFromStore * 1000); // Store time in milliseconds
   const [displayTime, setDisplayTime] = useState(() =>
     formatTime(timerFromStore * 1000)
   ); // Initialize display time
@@ -30,7 +30,7 @@ export const Timer = () => {
     const runTimer = () => {
       const elapsed = performance.now() - start;
       const newTimer = Math.max(0, timerFromStore * 1000 - elapsed);
-      setLocalTimer(newTimer);
+      // setLocalTimer(newTimer);
       setDisplayTime(formatTime(newTimer));
       updateTimer(Math.ceil(newTimer / 1000)); //
 
@@ -63,7 +63,7 @@ export const Timer = () => {
   useEffect(() => {
     // Reset the local timer when the game level changes or game restarts
     if (gameStatus === "not started" || gameStatus === "running") {
-      setLocalTimer(startTime[gameLevel] * 1000);
+      // setLocalTimer(startTime[gameLevel] * 1000);
       setDisplayTime(formatTime(startTime[gameLevel] * 1000));
     }
   }, [gameLevel, gameStatus, startTime]);
