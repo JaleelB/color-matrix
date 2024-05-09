@@ -21,8 +21,8 @@ export const Logo = () => {
           y="20"
           font-family="Arial"
           font-size="20"
-          className="uppercase"
-          fill="#fbed2b"
+          className="uppercase text-accent-secondary"
+          fill="currentColor"
         >
           Color
         </text>
@@ -31,8 +31,8 @@ export const Logo = () => {
           y="40"
           font-family="Arial"
           font-size="20"
-          className="uppercase"
-          fill="#ff65be"
+          className="uppercase text-accent-tertiary"
+          fill="currentColor"
         >
           Matrix
         </text>

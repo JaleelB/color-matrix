@@ -47,7 +47,7 @@ export const End: React.FC = () => {
             variant="outline"
             onClick={() => updateGameStatus("not started")}
             className={cn(
-              "text-[2vh] border-white border-2 uppercase w-full md:w-[51vh] p-[4vh] hover:bg-[#ff65be] hover:text-black hover:border-[#ff65be]"
+              "text-[2vh] border-white border-2 uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:text-background hover:border-accent-tertiary"
             )}
           >
             No, lets go to main menu
@@ -56,7 +56,7 @@ export const End: React.FC = () => {
             size="lg"
             onClick={() => restartGame()}
             className={cn(
-              "bg-[#fbed2b] border-[#fbed2b] text-[2vh] uppercase w-full md:w-[51vh] p-[4vh] hover:bg-[#ff65be] hover:border-[#ff65be] border-2"
+              "bg-accent-secondary border-accent-secondary text-[2vh] uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:border-accent-tertiary border-2"
             )}
           >
             Let&apos;s play again
@@ -70,7 +70,7 @@ export const End: React.FC = () => {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-black group"
+            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
           )}
         >
           <svg
@@ -79,7 +79,7 @@ export const End: React.FC = () => {
             width="16"
             strokeWidth="3"
             xmlns="http://www.w3.org/2000/svg"
-            className="fill-current text-white group-hover:text-black cursor-pointer transition-all duration-300 ease-in-out"
+            className="fill-current text-white group-hover:text-background cursor-pointer transition-all duration-300 ease-in-out"
           >
             <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
           </svg>
@@ -90,7 +90,7 @@ export const End: React.FC = () => {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-black group"
+            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
           )}
         >
           <svg
@@ -98,7 +98,7 @@ export const End: React.FC = () => {
             height="19"
             width="19"
             strokeWidth="3"
-            className="fill-current text-white group-hover:text-black cursor-pointer transition-all duration-300 ease-in-out"
+            className="fill-current text-white group-hover:text-background cursor-pointer transition-all duration-300 ease-in-out"
           >
             <path
               fill="currentColor"

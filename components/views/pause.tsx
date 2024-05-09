@@ -47,7 +47,7 @@ export const Pause: React.FC = () => {
       </SheetTrigger>
       <SheetContent
         side="bottom"
-        className="w-screen h-screen bg-[#56B254] border-[#56B254]"
+        className="w-screen h-screen bg-accent-secondary border-accent-secondary"
       >
         <SheetHeader>
           <svg
@@ -90,7 +90,7 @@ export const Pause: React.FC = () => {
                       <Button
                         onClick={option.func}
                         className={cn(
-                          "w-full h-12 text-center bg-black border-2 border-black text-[#56B254] hover:bg-[#56B254] hover:text-black focus:outline-none rounded-none font-bold text-lg py-7"
+                          "w-full h-12 text-center bg-background border-2 border-background text-accent-secondary hover:bg-accent-secondary hover:text-background focus:outline-none rounded-none font-bold text-lg py-7"
                         )}
                         style={{
                           width: `calc(200px + 15vw)`,
@@ -103,7 +103,7 @@ export const Pause: React.FC = () => {
                     <Button
                       onClick={option.func}
                       className={cn(
-                        "w-full h-12 text-center bg-black border-2 border-black text-[#56B254] hover:bg-[#56B254] hover:text-black focus:outline-none rounded-none font-bold text-lg py-7"
+                        "w-full h-12 text-center bg-background border-2 border-background text-accent-secondary hover:bg-accent-secondary hover:text-background focus:outline-none rounded-none font-bold text-lg py-7"
                       )}
                       style={{
                         width: `calc(200px + 15vw)`,

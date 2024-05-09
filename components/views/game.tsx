@@ -27,7 +27,7 @@ const GameFooter: React.FC = () => {
   }));
   return (
     <footer className="fixed bottom-0 left-0 w-full h-20 text-white flex justify-between items-center px-4 lg:px-8">
-      <Timer />
+      {/* <Timer /> */}
       {/* <div className="text-xl">00:00:00</div> */}
       <Link
         href="https://github.com/JaleelB/color-matrix"
@@ -43,7 +43,7 @@ const GameFooter: React.FC = () => {
           <Pause />
         </div>
         <div className="text-right flex flex-col">
-          <span className="uppercase text-green-500">{gameLevel}</span>
+          <span className="uppercase text-accent-secondary">{gameLevel}</span>
           <span className="uppercase -mt-1">BEST: {highScore}</span>
         </div>
       </div>
@@ -53,7 +53,7 @@ const GameFooter: React.FC = () => {
 
 export const Game: React.FC = () => {
   return (
-    <section className="w-full h-full bg-black text-white grid place-items-center">
+    <section className="w-full h-full text-white grid place-items-center">
       <GameHeader />
       <GameGrid />
       <GameFooter />
