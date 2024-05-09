@@ -1,6 +1,7 @@
 import { useGameState } from "@/state/game";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { Icons } from "../ui/icons";
 
 export const Logo = () => {
   const endGame = useGameState((state) => state.endGame);
@@ -15,28 +16,7 @@ export const Logo = () => {
       }}
       className={cn("p-0 -ml-2")}
     >
-      <svg width="90" height="40" xmlns="http://www.w3.org/2000/svg">
-        <text
-          x="10"
-          y="20"
-          font-family="Arial"
-          font-size="20"
-          className="uppercase text-accent-secondary"
-          fill="currentColor"
-        >
-          Color
-        </text>
-        <text
-          x="10"
-          y="40"
-          font-family="Arial"
-          font-size="20"
-          className="uppercase text-accent-tertiary"
-          fill="currentColor"
-        >
-          Matrix
-        </text>
-      </svg>
+      <Icons.logo />
     </Button>
   );
 };

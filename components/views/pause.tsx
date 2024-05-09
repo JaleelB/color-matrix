@@ -9,6 +9,7 @@ import {
 import { useGameState } from "@/state/game";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { Icons } from "../ui/icons";
 
 export const Pause: React.FC = () => {
   const updateGameStatus = useGameState((state) => state.setGameStatus);
@@ -25,24 +26,13 @@ export const Pause: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild className="cursor-pointer">
-        <Button variant="link" size="icon" className="text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-circle-pause"
-            onClick={() => updateGameStatus("paused")}
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="10" x2="10" y1="15" y2="9"></line>
-            <line x1="14" x2="14" y1="15" y2="9"></line>
-          </svg>
+        <Button
+          variant="link"
+          size="icon"
+          className="text-white"
+          onClick={() => updateGameStatus("paused")}
+        >
+          <Icons.pause />
         </Button>
       </SheetTrigger>
       <SheetContent

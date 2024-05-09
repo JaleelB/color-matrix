@@ -8,6 +8,7 @@ import { HowToPlay } from "../game/how-to-play";
 import { GameGrid } from "../game/game-grid";
 import { Button } from "../ui/button";
 import { AlertDialogAction } from "../ui/alert-dialog";
+import { Icons } from "../ui/icons";
 
 const GameHeader: React.FC = () => {
   const score = useGameState((state) => state.currentScore);
@@ -49,22 +50,7 @@ const GameFooter: React.FC = () => {
                 className="text-white"
                 onClick={() => updateGameStatus("paused")}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="lucide lucide-circle-help"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                  <path d="M12 17h.01"></path>
-                </svg>
+                <Icons.help />
               </Button>
             }
             footerAction={
