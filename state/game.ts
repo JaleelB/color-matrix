@@ -2,8 +2,14 @@ import { randomColorPair } from "@/lib/color";
 import { create } from "zustand";
 
 export type Time = 7 | 5 | 3; // time to countdown for each tile click decreases with increasing game level. 7s for easy, 5s for medium, 3s for hard
-type GameLevel = "easy" | "medium" | "hard";
-type GameStatus = "not started" | "running" | "paused" | "ended";
+export type GameLevel = "easy" | "medium" | "hard";
+type GameStatus =
+  | "not started"
+  | "level select"
+  | "loading"
+  | "running"
+  | "paused"
+  | "ended";
 
 interface GameState {
   currentScore: number;
@@ -15,6 +21,7 @@ interface GameState {
   cardCount: Record<GameLevel, number>;
   gameColor: string;
   gameColorText: string;
+  levels: GameLevel[];
 }
 
 type GameActions = {
@@ -25,7 +32,7 @@ type GameActions = {
   setGameStatus: (status: GameStatus) => void;
   endGame: () => void;
   setGameColor: (color: string, text: string) => void;
-  initializeGame: () => void;
+  startGame: (level: GameLevel) => void;
   restartGame: () => void;
 };
 
@@ -58,6 +65,7 @@ export const useGameState = create<GameState & GameActions>((set) => {
       medium: 8,
       hard: 12,
     },
+    levels: ["easy", "medium", "hard"],
     gameStatus: "not started",
     increaseScore: () => {
       set((state) => {
@@ -87,15 +95,15 @@ export const useGameState = create<GameState & GameActions>((set) => {
     setGameLevel: (level) => set({ gameLevel: level }),
     setTimer: (time) => set({ timer: time }),
     setGameStatus: (status) => set({ gameStatus: status }),
-    initializeGame: () => {
+    startGame: (level: GameLevel) => {
       set((state) => ({
         ...state,
         gameStatus: "running",
-        // gameLevel: state.gameLevel,
-        gameLevel: "easy",
+        gameLevel: level,
         currentScore: 0,
-        timer: state.startTime["easy"],
+        timer: state.startTime[level],
       }));
+      console.log("state", useGameState.getState());
     },
     endGame: () => {
       set((state) => {
