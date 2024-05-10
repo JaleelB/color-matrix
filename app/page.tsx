@@ -1,5 +1,5 @@
 "use client";
-import { End, Game, Pause, Welcome } from "@/components/views";
+import { End, Game, Welcome, Levels, Loader } from "@/components/views";
 import { useGameState } from "@/state/game";
 
 export default function GameView() {
@@ -7,6 +7,8 @@ export default function GameView() {
 
   const currentGameView = {
     "not started": <Welcome />,
+    "level select": <Levels />,
+    loading: <Loader />,
     running: <Game />,
     paused: <Game />,
     ended: <End />,

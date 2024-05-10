@@ -30,7 +30,7 @@ const GameFooter: React.FC = () => {
 
   return (
     <footer className="fixed bottom-0 left-0 w-full h-20 text-white flex justify-between items-center px-4 lg:px-8">
-      {/* <Timer /> */}
+      <Timer />
       {/* <div className="text-xl">00:00:00</div> */}
       <Link
         href="https://github.com/JaleelB/color-matrix"

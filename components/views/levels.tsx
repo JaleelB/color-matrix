@@ -3,10 +3,9 @@ import { GameLevel, useGameState } from "@/state/game";
 import { Icons } from "../ui/icons";
 
 export const Levels: React.FC = () => {
+  const setLevel = useGameState((state) => state.setGameLevel);
+  const setGameStatus = useGameState((state) => state.setGameStatus);
   const levels = useGameState((state) => state.levels);
-  const startGame = useGameState((state) => state.startGame);
-
-  const handleLevelClick = (level: GameLevel) => startGame(level);
 
   return (
     <div className="w-full h-full text-white grid place-items-center">
@@ -19,7 +18,10 @@ export const Levels: React.FC = () => {
             <div
               key={index}
               className={`level-card p-2 grid place-content-center border border-accent md:w-full md:max-w-[400px] cursor-pointer group uppercase relative bg-gradient-to-t from-pink-500 via-red-500 to-yellow-500`}
-              onClick={() => handleLevelClick(level)}
+              onClick={() => {
+                setLevel(level);
+                setGameStatus("loading");
+              }}
             >
               <Icons.plus className="absolute h-6 w-6 -top-3 -left-3 text-white" />
               <Icons.plus className="absolute h-6 w-6 -bottom-3 -left-3 text-white" />
