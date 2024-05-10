@@ -1,8 +1,8 @@
 import { randomColorPair } from "@/lib/color";
 import { create } from "zustand";
 
-export type Time = 7 | 5 | 3; // time to countdown for each tile click decreases with increasing game level. 7s for easy, 5s for medium, 3s for hard
-export type GameLevel = "easy" | "medium" | "hard";
+export type Time = 7 | 5 | 3 | 1; // time to countdown for each tile click decreases with increasing game level. 7s for easy, 5s for medium, 3s for hard
+export type GameLevel = "easy" | "medium" | "hard" | "insane";
 type GameStatus =
   | "not started"
   | "level select"
@@ -59,13 +59,15 @@ export const useGameState = create<GameState & GameActions>((set) => {
       easy: 7,
       medium: 5,
       hard: 3,
+      insane: 1,
     },
     cardCount: {
       easy: 4,
       medium: 8,
       hard: 12,
+      insane: 16,
     },
-    levels: ["easy", "medium", "hard"],
+    levels: ["easy", "medium", "hard", "insane"],
     gameStatus: "not started",
     increaseScore: () => {
       set((state) => {
