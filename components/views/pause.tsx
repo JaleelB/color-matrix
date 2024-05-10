@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Sheet,
   SheetClose,
@@ -10,20 +10,33 @@ import { useGameState } from "@/state/game";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Icons } from "../ui/icons";
+import { MarkerLine } from "../ui/marker-line";
 
 export const Pause: React.FC = () => {
   const updateGameStatus = useGameState((state) => state.setGameStatus);
   const endGame = useGameState((state) => state.endGame);
+  const [open, setOpen] = React.useState(false);
 
   const options = [
-    { label: "Play Game", func: () => updateGameStatus("running") },
-    { label: "Levels", func: () => updateGameStatus("level select") },
-    { label: "How to Play", func: () => updateGameStatus("paused") },
-    { label: "Exit", func: () => endGame() },
+    {
+      label: "Resume Game",
+      func: () => {
+        updateGameStatus("running");
+        setOpen(false);
+      },
+    },
+    { label: "Change Levels", func: () => updateGameStatus("level select") },
+    { label: "End Game", func: () => endGame() },
   ];
 
+  useEffect(() => {
+    if (!open) {
+      updateGameStatus("running");
+    }
+  }, [open, updateGameStatus]);
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
       <SheetTrigger asChild className="cursor-pointer">
         <Button
           variant="link"
@@ -35,76 +48,79 @@ export const Pause: React.FC = () => {
         </Button>
       </SheetTrigger>
       <SheetContent
-        side="bottom"
-        className="w-screen h-screen bg-accent-secondary border-accent-secondary"
+        side="right"
+        // className="w-screen h-screen bg-accent-secondary border-accent-secondary"
+        className="w-screen bg-background px-8"
       >
-        <SheetHeader>
-          <svg
-            width="90"
-            height="40"
-            xmlns="http://www.w3.org/2000/svg"
-            className="fixed -mt-2 -ml-3"
-          >
-            <text
-              x="10"
-              y="20"
-              font-family="Arial"
-              font-size="20"
-              className="uppercase"
-              fill="#000"
+        <div className="relative w-full h-full">
+          <SheetHeader className="-ml-2">
+            <svg
+              width="90"
+              height="40"
+              xmlns="http://www.w3.org/2000/svg"
+              className="fixed -mt-2 -ml-3"
             >
-              Color
-            </text>
-            <text
-              x="10"
-              y="40"
-              font-family="Arial"
-              font-size="20"
-              className="uppercase"
-              fill="#000"
-            >
-              Matrix
-            </text>
-          </svg>
-        </SheetHeader>
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="flex flex-col gap-2">
-            {options.map((option) => {
-              const shouldClose =
-                option.label === "Play Game" || option.label === "Exit";
-              return (
-                <>
-                  {shouldClose ? (
-                    <SheetClose asChild key={option.label}>
+              <text
+                x="10"
+                y="20"
+                font-family="Arial"
+                font-size="20"
+                className="uppercase fill-accent-secondary"
+              >
+                Color
+              </text>
+              <text
+                x="10"
+                y="40"
+                font-family="Arial"
+                font-size="20"
+                className="uppercase fill-accent-secondary"
+              >
+                Matrix
+              </text>
+            </svg>
+          </SheetHeader>
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full flex flex-col gap-6">
+              {options.map((option) => {
+                const shouldClose =
+                  option.label === "Play Game" || option.label === "Exit";
+                return (
+                  <>
+                    {shouldClose ? (
+                      <SheetClose asChild key={option.label}>
+                        <Button
+                          onClick={option.func}
+                          className={cn(
+                            "w-full px-0 text-[calc(20px+1.5vh)] justify-start bg-transparent text-white hover:text-accent-secondary hover:bg-transparent focus:outline-none rounded-none font-bold py-3"
+                          )}
+                        >
+                          {option.label}
+                        </Button>
+                      </SheetClose>
+                    ) : (
                       <Button
                         onClick={option.func}
                         className={cn(
-                          "w-full h-12 text-center bg-background border-2 border-background text-accent-secondary hover:bg-accent-secondary hover:text-background focus:outline-none rounded-none font-bold text-lg py-7"
+                          "w-full px-0 text-[calc(20px+1.5vh)] justify-start bg-transparent text-white hover:text-accent-secondary hover:bg-transparent focus:outline-none rounded-none font-bold py-3"
                         )}
-                        style={{
-                          width: `calc(200px + 15vw)`,
-                        }}
                       >
                         {option.label}
                       </Button>
-                    </SheetClose>
-                  ) : (
-                    <Button
-                      onClick={option.func}
-                      className={cn(
-                        "w-full h-12 text-center bg-background border-2 border-background text-accent-secondary hover:bg-accent-secondary hover:text-background focus:outline-none rounded-none font-bold text-lg py-7"
-                      )}
-                      style={{
-                        width: `calc(200px + 15vw)`,
-                      }}
-                    >
-                      {option.label}
-                    </Button>
-                  )}
-                </>
-              );
-            })}
+                    )}
+                  </>
+                );
+              })}
+            </div>
           </div>
+          {/* <MarkerLine
+            className="absolute -top-4 -left-2 w-[12rem]"
+            fill="#fbed2d"
+          /> */}
+          <MarkerLine
+            className="absolute -bottom-[2%] -right-[15%] w-[20rem]"
+            fill="#ff66bf"
+          />
         </div>
       </SheetContent>
     </Sheet>
