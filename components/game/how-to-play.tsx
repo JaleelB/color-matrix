@@ -20,7 +20,7 @@ export const HowToPlay: React.FC<HowToPlayProps> = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="z-[1000]">
         <AlertDialogHeader className="space-y-4">
           <AlertDialogTitle className="text-accent-secondary">
             How to Play Color Matrix?
