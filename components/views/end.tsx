@@ -48,7 +48,7 @@ export const End: React.FC = () => {
             variant="outline"
             onClick={() => updateGameStatus("not started")}
             className={cn(
-              "text-[2vh] border-white border-2 uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:text-background hover:border-accent-tertiary"
+              "text-[2vh] border-white border-2 uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:rounded-full hover:text-background hover:border-accent-tertiary transition duration-200 ease"
             )}
           >
             No, lets go to main menu
@@ -57,7 +57,7 @@ export const End: React.FC = () => {
             size="lg"
             onClick={() => restartGame()}
             className={cn(
-              "bg-accent-secondary border-accent-secondary text-[2vh] uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:border-accent-tertiary border-2"
+              "bg-accent-secondary border-accent-secondary text-[2vh] uppercase w-full md:w-[51vh] p-[4vh] hover:bg-accent-tertiary hover:rounded-full  hover:border-accent-tertiary border-2 transition duration-200 ease"
             )}
           >
             Let&apos;s play again
@@ -74,7 +74,7 @@ export const End: React.FC = () => {
             "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
           )}
         >
-          <Icons.twitter className="fill-current text-white group-hover:text-background cursor-pointer transition-all duration-300 ease-in-out h-4 w-4" />
+          <Icons.twitter className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 ease-in-out w-[23px] h-[23px]" />
         </Link>
         <Link
           href={siteConfig.links.github}
@@ -85,7 +85,7 @@ export const End: React.FC = () => {
             "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
           )}
         >
-          <Icons.gitHub className="fill-current text-white group-hover:text-background cursor-pointer transition-all duration-300 ease-in-out" />
+          <Icons.gitHub className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 ease-in-out w-[19px] h-[19px]" />
         </Link>
       </div>
     </div>

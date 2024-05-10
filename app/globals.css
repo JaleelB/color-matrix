@@ -27,6 +27,34 @@
     --accent-secondary: 56 96% 58%;
     --accent-tertiary: 325 100% 70%;
   }
+
+  @keyframes radialGradientExpand {
+    from {
+      background-size: 0% 0%;
+      background-position: 50% 50%;
+    }
+    to {
+      background-size: 200% 200%;
+      background-position: 50% 50%;
+    }
+  }
+
+  .level-card {
+    display: inline-block;
+    background: radial-gradient(
+      circle,
+      var(--accent-secondary) 30%,
+      (--accent-tertiary) 100%
+    );
+    background-size: 0 0;
+    background-position: 50% 50%;
+    transition: background-size 0.5s ease-in-out,
+      background-position 0.5s ease-in-out;
+  }
+
+  .level-card:hover {
+    animation: radialGradientExpand 0.5s forwards;
+  }
 }
 
 @layer base {

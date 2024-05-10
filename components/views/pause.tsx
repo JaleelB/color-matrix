@@ -13,12 +13,11 @@ import { Icons } from "../ui/icons";
 
 export const Pause: React.FC = () => {
   const updateGameStatus = useGameState((state) => state.setGameStatus);
-  const updateGameLevel = useGameState((state) => state.setGameLevel);
   const endGame = useGameState((state) => state.endGame);
 
   const options = [
     { label: "Play Game", func: () => updateGameStatus("running") },
-    { label: "Levels", func: () => updateGameLevel("easy") },
+    { label: "Levels", func: () => updateGameStatus("level select") },
     { label: "How to Play", func: () => updateGameStatus("paused") },
     { label: "Exit", func: () => endGame() },
   ];
@@ -32,7 +31,7 @@ export const Pause: React.FC = () => {
           className="text-white"
           onClick={() => updateGameStatus("paused")}
         >
-          <Icons.pause />
+          <Icons.pause className="w-7 h-7" />
         </Button>
       </SheetTrigger>
       <SheetContent

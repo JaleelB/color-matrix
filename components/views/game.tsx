@@ -50,7 +50,7 @@ const GameFooter: React.FC = () => {
                 className="text-white"
                 onClick={() => updateGameStatus("paused")}
               >
-                <Icons.help />
+                <Icons.help className="w-7 h-7" />
               </Button>
             }
             footerAction={
