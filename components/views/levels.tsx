@@ -1,6 +1,7 @@
 import React from "react";
 import { GameLevel, useGameState } from "@/state/game";
 import { Icons } from "../ui/icons";
+import { Logo } from "../game/logo";
 
 export const Levels: React.FC = () => {
   const setLevel = useGameState((state) => state.setGameLevel);
@@ -9,6 +10,10 @@ export const Levels: React.FC = () => {
 
   return (
     <div className="w-full h-full text-white grid place-items-center">
+      <div className="fixed top-4 left-4">
+        <Logo />
+      </div>
+
       <div className="w-full h-full max-h-[600px]">
         <h1 className="text-center flex flex-col uppercase text-[5.7vw] md:text-[4.2vh] xl:text-[3.7vh] mb-16 font-medium">
           Choose a level

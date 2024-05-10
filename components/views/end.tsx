@@ -23,24 +23,22 @@ export const End: React.FC = () => {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="flex justify-between w-screen items-center h-20 px-4 py-8">
-        <Logo />
-        <div className="text-[3.7vh] lg:text-[2.5vh] uppercase text-center">
-          <p className="text-sm">high score</p>
-          <p className="text-3xl font-bold">{highScore}</p>
-        </div>
-      </div>
       <div className="space-y-4 flex flex-1 flex-col items-center justify-center">
-        <h1 className="glitch uppercase">
+        <h1 className="glitch uppercase leading-tight font-bold">
           <span aria-hidden="true">Game over</span>
           Game over
           <span aria-hidden="true">Game over</span>
         </h1>
-        <div className="uppercase font-bold my-[5vh] text-center">
-          <p className="text-[3.7vw] lg:text-[1.5vw]">Score</p>
-          <p className="text-[80px] md:text-[5.5vw] lg:text-[6vw]">
-            {finalScore}
-          </p>
+        <div>
+          <div className="uppercase my-[5vh] text-center leading-tight space-y-4">
+            <div>
+              <p>Score</p>
+              <p className="text-[80px] font-bold md:text-[5.5vw] lg:text-[6vw]">
+                {finalScore}
+              </p>
+            </div>
+            <p className="font-bold">High score: {highScore}</p>
+          </div>
         </div>
         <div className="flex flex-col md:flex-row w-full justify-center gap-[2vw] p-[3vh]">
           <Button
@@ -71,10 +69,10 @@ export const End: React.FC = () => {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
+            "border-white border-2 rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group p-0 transition duration-200"
           )}
         >
-          <Icons.twitter className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 ease-in-out w-[23px] h-[23px]" />
+          <Icons.twitter className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 w-[18px] h-[18px]" />
         </Link>
         <Link
           href={siteConfig.links.github}
@@ -82,10 +80,10 @@ export const End: React.FC = () => {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "border-white rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group"
+            "border-white border-2 rounded-xl w-[48px] h-[48px] hover:rounded-full hover:bg-white hover:text-background group p-0 transition duration-200"
           )}
         >
-          <Icons.gitHub className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 ease-in-out w-[19px] h-[19px]" />
+          <Icons.gitHub className="fill-current text-white group-hover:text-background cursor-pointer transition duration-200 w-[19px] h-[19px]" />
         </Link>
       </div>
     </div>
