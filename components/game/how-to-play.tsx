@@ -7,6 +7,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import Image from "next/image";
 
 interface HowToPlayProps {
   trigger: React.ReactNode;
@@ -25,8 +26,8 @@ export const HowToPlay: React.FC<HowToPlayProps> = ({
           <AlertDialogTitle className="text-accent-secondary">
             How to Play Color Matrix?
           </AlertDialogTitle>
-          <div className="w-full min-h-[200px] border grid place-content-center">
-            gameplay gif
+          <div className="w-full min-h-[250px] border grid place-content-center relative">
+            <Image src="/gameplay.gif" alt="Game play video" fill />
           </div>
           <AlertDialogDescription>
             Welcome to Color Matrix! This game challenges your quick thinking
