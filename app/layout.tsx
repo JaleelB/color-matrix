@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `$%s - ${siteConfig.name}`,
   },
+  manifest: "/site.webmanifest",
   description: siteConfig.description,
   keywords: [
     "color matrix",

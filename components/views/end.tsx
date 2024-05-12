@@ -16,7 +16,7 @@ export const End: React.FC = () => {
     restartGame,
   } = useGameState((state) => ({
     finalScore: state.currentScore,
-    highScore: state.highScore,
+    highScore: state.highScores[state.gameLevel],
     setGameStatus: state.setGameStatus,
     restartGame: state.restartGame,
   }));
