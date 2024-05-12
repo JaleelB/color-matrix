@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Color Matrix Game
+
+[![Color Matrix](./public/gameplay.gif)](https://colormatrix.vercel.app/)
+
+**Color Matrix** is a progressive web application (PWA) built with Next.js, designed to challenge and enhance cognitive abilities through the Stroop effect. This interactive game tests players' reaction times by asking them to identify the color of words, which may not match the meaning of the words themselves. It offers a fun and engaging way to experience a well-known psychological phenomenon while improving attention, cognitive flexibility, and processing speed.
+
+## Features
+
+- **Stroop Effect Gameplay**: Experience the cognitive challenge where the name of a color (e.g., "Blue") is printed in a color not denoted by the name (e.g., the word "Blue" printed in red).
+- **Progressive Difficulty Levels**: From easy to insane, each level increases in difficulty by reducing the time allowed to respond and increasing the number of color options.
+- **High Scores Tracking**: Keep track of your high scores for each difficulty level, encouraging you to improve.
+- **Offline Capable**: Play without an internet connection once the app is installed on your device.
+
+## Background on the Stroop Effect
+
+The Stroop effect demonstrates the brain's reaction time when the color of a word's font and the word itself do not match. This interference in reaction times during a task is used within the game to create challenging levels that help train and measure cognitive agility and flexibility.
 
 ## Getting Started
 
-First, run the development server:
+### Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/your-username/color-matrix.git
+   cd color-matrix
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install the dependencies:**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   pnpm install
+   ```
 
-## Learn More
+3. **Run the development server:**
+   ```bash
+   pnpm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The app will automatically reload if you make edits.
 
-To learn more about Next.js, take a look at the following resources:
+### Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Fork the repository
+- Create a branch
+  ```bash
+  git checkout -b fix/amazingFix
+  ```
+- Commit your changes and push to your branch
+  ```bash
+  git commit -m "made an amazingFix"
+  git push origin fix/amazingFix
+  ```
+- Open a pull request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Distributed under the MIT License. See `LICENSE` for more information.
