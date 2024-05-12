@@ -25,7 +25,7 @@ const GameHeader: React.FC = () => {
 
 const GameFooter: React.FC = () => {
   const gameLevel = useGameState((state) => state.gameLevel);
-  const highScore = useGameState((state) => state.highScore);
+  const highScores = useGameState((state) => state.highScores);
   const updateGameStatus = useGameState((state) => state.setGameStatus);
 
   return (
@@ -66,7 +66,7 @@ const GameFooter: React.FC = () => {
         </div>
         <div className="text-right flex flex-col">
           <span className="uppercase text-accent-secondary">{gameLevel}</span>
-          <span className="uppercase -mt-1">BEST: {highScore}</span>
+          <span className="uppercase -mt-1">BEST: {highScores[gameLevel]}</span>
         </div>
       </div>
     </footer>
